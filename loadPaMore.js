@@ -1,25 +1,18 @@
 (function($) {
 	"use strict";
-
 	$.fn.loadPaMore = function(options) {
 		var self = this,
-
-			settings = $.extend({
-				source: '',
-				step: 2,
-			}, options),
-
 			stepped = 1,
-
 			loadPaMoreButton = self.find('.loadpamore-button'),
-
 			item = self.find('.item'),
 			items = self.find('.items'),
-
+			settings = $.extend({
+				source: '',
+				step: 2 
+			}, options),
 			finished = function() {
 				loadPaMoreButton.remove();
 			},
-
 			append = function(value) {
 				var name, 
 					part;
@@ -37,7 +30,6 @@
 
 				item.clone().appendTo(items);
 			},
-
 			load = function(start, count) {
 				$.ajax({
 					url: settings.source,
@@ -50,7 +42,6 @@
 					beforeSend: function() {
 						loadPaMoreButton.attr('disabled', true).text('Loading...');
 					},
-
 					success: function(data) {
 						loadPaMoreButton.removeAttr('disabled').text('Load pa more...');
 
